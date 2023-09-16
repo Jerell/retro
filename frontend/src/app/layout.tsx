@@ -1,10 +1,10 @@
 import "./globals.css";
-import { Charis_SIL } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import clsxm from "@/lib/clsxm";
 import RootContextWrapper from "./RootContextWrapper";
 import Header from "./components/Header";
 
-const charis = Charis_SIL({
+const montserrat = Montserrat({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-charis",
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={clsxm([
-          charis.className,
+          montserrat.className,
           "flex flex-col justify-between items-center pb-1",
         ])}
       >
