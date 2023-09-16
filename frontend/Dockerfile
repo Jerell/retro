@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 FROM oven/bun AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json bun.lockb ./
 ENV NODE_ENV development
 RUN bun install
 

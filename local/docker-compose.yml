@@ -10,20 +10,20 @@ services:
       - 8080:8080
       - 443:443
       - 80:80
-  frontend:
+  retro-frontend:
     container_name: frontend
     build:
       context: ../frontend
       dockerfile: Dockerfile
       target: deps
-    command: npm run dev
+    command: bun run dev
     volumes:
       - ../frontend:/app
     restart: unless-stopped
     labels:
       - traefik.enable=true
-      - traefik.http.routers.frontend.rule=Host(`localhost`)
-      - traefik.http.routers.frontend.entrypoints=web,webSecure
+      - traefik.http.routers.retro-frontend.rule=Host(`localhost`)
+      - traefik.http.routers.retro-frontend.entrypoints=web,webSecure
     expose:
       - 3000
     healthcheck:
@@ -39,15 +39,8 @@ services:
       interval: 15s
       timeout: 10s
       retries: 5
-  engine:
-    container_name: engine
-    build:
-      context: ../engine
-      dockerfile: Dockerfile
+  retro-server:
+    container_name: server
+    build: ../server
     expose:
       - 3000
-  api:
-    container_name: api
-    build: ../api
-    expose:
-      - 80
